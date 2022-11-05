@@ -768,6 +768,34 @@ Section:NewButton("Crucifix [READ INFO]", "Only works on entities spawned by scr
     end)
 end)
 
+local Tab = Window:NewTab("Custom Guiding Light")
+local Section = Tab:NewSection("Guiding Light Generator.")
+local linetobemodified
+local currentbox
+local text1 = "PlaceHolder"
+local text2 = "PlaceHolder"
+local text3 = "PlaceHolder"
+Section:NewDropdown("Line To Be Modified", "The Guiding Light's Line To Be Modified", {"1st Line", "2nd Line", "3rd Line"}, function(currentOption)
+linetobemodified = currentOption
+end)
+
+Section:NewTextBox("Text", "Guiding Light's Selected Text", function(txt)
+if linetobemodified == "1st Line" then
+text1 = txt
+elseif linetobemodified == "2nd Line" then
+    text2 = txt
+elseif linetobemodified == "3rd Line" then
+    text3 = txt
+end
+end)
+
+Section:NewButton("Die", "Kill Yourself", function()
+    
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {text1, text2, text3})
+
+    end)
+
 -- CUSTOM ENTITIES
 local Tab = Window:NewTab("Custom Entities")
 local Section = Tab:NewSection("Custom Entities")
