@@ -742,63 +742,7 @@ Section:NewButton("A-60 [KILLABLE]", "Summons A-60 [CAN KILL AND NOT THE OFFICIA
     Creator.runEntity(entity)
 end)
 
--- Items
-local Tab = Window:NewTab("Items")
-local Section = Tab:NewSection("Item Giver")
-
-Section:NewButton("Crucifix [READ INFO]", "Only works on entities spawned by scripts.", function()
-    local shadow=game:GetObjects("rbxassetid://11468556781")[1]
-    shadow.Parent = game.Players.LocalPlayer.Backpack
-    local anim = Instance.new("Animation")
-    anim.AnimationId = 'https://www.roblox.com/Assest?ID=9982615727'
-    local track
-     
-    shadow.Equipped:Connect(function()
-        track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(anim) 
-            track.Priority = Enum.AnimationPriority.Action
-            track:Play()
-            track.Looped = true
-     
-    end)
-     
-    shadow.Unequipped:Connect(function()
-        if track then
-            track:Stop()
-        end
-    end)
-end)
-
-local Tab = Window:NewTab("Custom Guiding Light")
-local Section = Tab:NewSection("Guiding Light Generator.")
-local linetobemodified
-local currentbox
-local text1 = "PlaceHolder"
-local text2 = "PlaceHolder"
-local text3 = "PlaceHolder"
-Section:NewDropdown("Line To Be Modified", "The Guiding Light's Line To Be Modified", {"1st Line", "2nd Line", "3rd Line"}, function(currentOption)
-linetobemodified = currentOption
-end)
-
-Section:NewTextBox("Text", "Guiding Light's Selected Text", function(txt)
-if linetobemodified == "1st Line" then
-text1 = txt
-elseif linetobemodified == "2nd Line" then
-    text2 = txt
-elseif linetobemodified == "3rd Line" then
-    text3 = txt
-end
-end)
-
-Section:NewButton("Die", "Kill Yourself", function()
-    
-    game.Players.LocalPlayer.Character.Humanoid.Health = 0
-    firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {text1, text2, text3})
-
-    end)
-
--- CUSTOM ENTITIES
-local Tab = Window:NewTab("Custom Entities")
-local Section = Tab:NewSection("Custom Entities")
+Section:NewLabel("Custom Entities")
 
 Section:NewButton("Angry Munci", "Summons Angry Munci. [KILLING CAN BE TOGGLED]", function()
     local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
@@ -3694,6 +3638,8 @@ Section:NewButton("LSPLASH", "Summons LSPLASH.", function()
     Creator.runEntity(entity)
 end)
 
+Section:NewLabel("Killable Custom Entities")
+
 Section:NewButton("Angry Munci [KILLABLE]", "Summons Angry Munci Who Kills.", function()
     local Creator = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors%20Entity%20Spawner/Source.lua"))()
 
@@ -6292,10 +6238,7 @@ Section:NewButton("Scratch Cat [KILLABLE]", "Summons Scratch Cat that kills.", f
     Creator.runEntity(entity)
 end)
 
-
---Entity Summoner Time
-local Tab = Window:NewTab("Entity Timer")
-local Section = Tab:NewSection("Summon Entities Every Couple Of Seconds/Minutes Etc")
+Section:NewLabel("Entities Every 15 seconds")
 
 Section:NewButton("Halt Every 15 Secs", "Summons Halt every 15 seconds. [IRREVERSIBLE]", function()
     local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
@@ -6787,7 +6730,7 @@ Section:NewButton("Eyes Every 15 seconds [Damage]", "Summons Eyes every 15 secon
     end
 end)
 
-Section:NewLabel("Custom Entities")
+Section:NewLabel("Custom Entities Every 15 Seconds")
 
 Section:NewButton("Angry Munci every 15 seconds", "Summons Angry Munci every 15 seconds. [IRREVERSIBLE]", function()
     local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
@@ -9696,9 +9639,7 @@ Section:NewButton("LSPLASH every 15 seconds", "Summons LSPLASH every 15 seconds.
     end
 end)
 
---Entity Summons every Room
-local Tab = Window:NewTab("Entity On Each Door")
-local Section = Tab:NewSection("Spawns an entity each time a door is opened.")
+Section:NewLabel("Entities Every Door")
 
 Section:NewLabel("Eyes does not work to let you know.")
 Section:NewLabel("Eyes instantly despawns due to his code.")
@@ -10063,7 +10004,7 @@ Creator.runEntity(entity)
     end)
 end)
 
-Section:NewLabel("Custom Entities")
+Section:NewLabel("Custom Entities every door")
 
 Section:NewButton("Angry Munci Every Door", "Summons Angry Munci every door. [IRREVERSIBLE]", function()
     local Data = require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game)
@@ -13007,6 +12948,61 @@ Creator.runEntity(entity)
     end)
 end)
 
+-- Items
+local Tab = Window:NewTab("Items")
+local Section = Tab:NewSection("Item Giver")
+
+Section:NewButton("Crucifix [READ INFO]", "Only works on entities spawned by scripts.", function()
+    local shadow=game:GetObjects("rbxassetid://11468556781")[1]
+    shadow.Parent = game.Players.LocalPlayer.Backpack
+    local anim = Instance.new("Animation")
+    anim.AnimationId = 'https://www.roblox.com/Assest?ID=9982615727'
+    local track
+     
+    shadow.Equipped:Connect(function()
+        track = game.Players.LocalPlayer.Character.Humanoid:LoadAnimation(anim) 
+            track.Priority = Enum.AnimationPriority.Action
+            track:Play()
+            track.Looped = true
+     
+    end)
+     
+    shadow.Unequipped:Connect(function()
+        if track then
+            track:Stop()
+        end
+    end)
+end)
+
+local Tab = Window:NewTab("Custom Guiding Light")
+local Section = Tab:NewSection("Guiding Light Generator.")
+local linetobemodified
+local currentbox
+local text1 = "PlaceHolder"
+local text2 = "PlaceHolder"
+local text3 = "PlaceHolder"
+Section:NewDropdown("Line To Be Modified", "The Guiding Light's Line To Be Modified", {"1st Line", "2nd Line", "3rd Line"}, function(currentOption)
+linetobemodified = currentOption
+end)
+
+Section:NewTextBox("Text", "Guiding Light's Selected Text", function(txt)
+if linetobemodified == "1st Line" then
+text1 = txt
+elseif linetobemodified == "2nd Line" then
+    text2 = txt
+elseif linetobemodified == "3rd Line" then
+    text3 = txt
+end
+end)
+
+Section:NewButton("Die", "Kill Yourself", function()
+    
+    game.Players.LocalPlayer.Character.Humanoid.Health = 0
+    firesignal(game.ReplicatedStorage.Bricks.DeathHint.OnClientEvent, {text1, text2, text3})
+
+    end)
+
+
 --Keybinds
 local Tab = Window:NewTab("Keybinds")
 local Section = Tab:NewSection("Keybinds")
@@ -14526,5 +14522,5 @@ Section:NewLabel("Eater Entity by Cherg01#3816")
 local Tab = Window:NewTab("Update Log")
 local Section = Tab:NewSection("List of all the new things that got added.")
 
-Section:NewLabel("Added Items Tab.")
-Section:NewLabel("Added Items: Crucifix")
+Section:NewLabel("Moved Custom Entities and Entities in 1 tab.")
+Section:NewLabel("Added the Crucifix item.")
