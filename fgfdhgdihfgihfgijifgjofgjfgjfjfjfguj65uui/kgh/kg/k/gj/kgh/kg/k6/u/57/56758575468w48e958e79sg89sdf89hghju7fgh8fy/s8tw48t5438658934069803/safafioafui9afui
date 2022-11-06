@@ -5,7 +5,6 @@ local Window = Library.CreateLib("pIamen6789rock's DOORS Entity Spawner", "DarkT
 local Tab = Window:NewTab("Entities")
 local Section = Tab:NewSection("Entites")
 
-
 Section:NewButton("Halt", "Summons Halt.", function()
     require(game.ReplicatedStorage.ClientModules.EntityModules.Shade).stuff(require(game.Players.LocalPlayer.PlayerGui.MainUI.Initiator.Main_Game), workspace.CurrentRooms[game.Players.LocalPlayer:GetAttribute("CurrentRoom")])
 end)
@@ -393,7 +392,7 @@ local entity = Creator.createEntity({
     Speed = 100, -- Percentage, 100 = default Rush speed
     DelayTime = 2, -- Time before starting cycles (seconds)
     HeightOffset = 0,
-    CanKill = true,
+    CanKill = false,
     KillRange = 25,
     BreakLights = true,
     BackwardsMovement = false,
@@ -483,7 +482,7 @@ local entity = Creator.createEntity({
     Speed = 200, -- Percentage, 100 = default Rush speed
     DelayTime = 2, -- Time before starting cycles (seconds)
     HeightOffset = 0,
-    CanKill = true,
+    CanKill = false,
     KillRange = 25,
     BreakLights = true,
     BackwardsMovement = false,
@@ -12953,7 +12952,7 @@ local Tab = Window:NewTab("Items")
 local Section = Tab:NewSection("Item Giver")
 
 Section:NewButton("Crucifix [READ INFO]", "Only works on entities spawned by scripts.", function()
-    local shadow=game:GetObjects("rbxassetid://11468556781")[1]
+    local shadow=game:GetObjects("rbxassetid://11480603603")[1]
     shadow.Parent = game.Players.LocalPlayer.Backpack
     local anim = Instance.new("Animation")
     anim.AnimationId = 'https://www.roblox.com/Assest?ID=9982615727'
@@ -12972,6 +12971,25 @@ Section:NewButton("Crucifix [READ INFO]", "Only works on entities spawned by scr
             track:Stop()
         end
     end)
+end)
+
+Section:NewButton("Crucifix [ITEM SHOP]", "Execute only on the item shop.", function()
+    local Functions = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Functions.lua"))()
+    local CustomShop = loadstring(game:HttpGet("https://raw.githubusercontent.com/RegularVynixu/Utilities/main/Doors/Custom%20Shop%20Items/Source.lua"))()
+    
+    
+    -- Create your tool here
+    local exampleTool = LoadCustomInstance("rbxassetid://11480603603")
+    
+    
+    -- Create custom shop item
+    CustomShop.CreateItem(exampleTool, {
+        Title = "Crucifix",
+        Desc = "Single use, blosts most attacks",
+        Image = "https://static.wikia.nocookie.net/doors-game/images/8/88/Icon_crucifix2.png/revision/latest?cb=20220728033038",
+        Price = 200,
+        Stack = 1,
+    })
 end)
 
 local Tab = Window:NewTab("Custom Guiding Light")
@@ -14514,7 +14532,7 @@ Section:NewLabel("by gamer4life#5289")
 Section:NewLabel("Shadow, Bloodroom Jack and Updated Heartbeat")
 Section:NewLabel("by Leap#7160")
 Section:NewLabel("Eater Entity by Cherg01#3816")
-
+Section:NewLabel("Crucifx By Screech#6908")
 
 
 
@@ -14522,5 +14540,4 @@ Section:NewLabel("Eater Entity by Cherg01#3816")
 local Tab = Window:NewTab("Update Log")
 local Section = Tab:NewSection("List of all the new things that got added.")
 
-Section:NewLabel("Moved Custom Entities and Entities in 1 tab.")
-Section:NewLabel("Added the Crucifix item.")
+Section:NewLabel("Added the Crucifx in the Item Shop.")
